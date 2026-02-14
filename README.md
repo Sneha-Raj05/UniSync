@@ -4,27 +4,30 @@
 
 ## ✨ Features
 
-* 👤 **Advanced Student Profile:** * 🖼️ **Profile Photo:** Students can upload and update their profile pictures for a personalized experience.
-    * ✍️ **Edit Details:** Users have the flexibility to 🛠️ **modify** their personal details and account information.
-    * 📊 **Activity Stats:** Real-time tracking of 📂 uploaded notes and 🎟️ registered events.
+* 👤 **Advanced Student Profile:** *
+    * **Profile Photo:** Students can upload and update their profile pictures for a personalized experience.
+    * **Edit Details:** Users have the flexibility to **modify** their personal details and account information.
+    * **Activity Stats:** Real-time tracking of uploaded notes and registered events.
 
-*📚 **Academic Notes Hub:** * 📤 **Upload:** Share study materials with the community.
-    * 📝 **Edit/Update:** 🔄 Modify your notes whenever required.
-    * 🗑️ **Delete:** Remove your uploaded notes with a single click.
+*📚 **Academic Notes Hub:** 
+    * **Upload:** Share study materials with the community.
+    * **Edit/Update:** Modify your notes whenever required.
+    * **Delete:** Remove your uploaded notes with a single click.
 
-* 📅 **Event Management:** 🎡 Browse upcoming campus events and 🎫 register instantly.
+* 📅 **Event Management:** Browse upcoming campus events and  register instantly.
 
-* 💳 **Secure Payments:** 💰 Integrated payment flow for event tickets and campus services.
+* 💳 **Secure Payments:**  Integrated payment flow for event tickets and campus services.
 
-* 💬 **Dynamic Review System:** * ✍️ **Write:** Share feedback on campus facilities.
-    * ✏️ **Edit:** 🔄 Refine your existing reviews.
-    * ❌ **Delete:** Remove your feedback at any time.
+* 💬 **Dynamic Review System:**
+    * **Write:** Share feedback on campus facilities.
+    * **Edit:** Refine your existing reviews.
+    * **Delete:** Remove your feedback at any time.
 
-* 🌓 **Global Dark Theme:** A persistent 🌙 **Moon Icon** toggle that saves your preference using LocalStorage.
+* 🌓 **Global Dark Theme:** A persistent **Moon Icon** toggle that saves your preference using LocalStorage.
 
-* 📞 **Contact Portal:** 📩 Integrated contact form and 📞 verified campus directory for quick assistance.
+* 📞 **Contact Portal:** Integrated contact form and verified campus directory for quick assistance.
 
-* 🔒 **Secure Authentication:** 🛡️ User data protection using **JWT** and secure login/logout flows.
+* 🔒 **Secure Authentication:** User data protection using **JWT** and secure login/logout flows.
 
 
 ## 🛠️ Tech Stack
@@ -89,11 +92,15 @@
 
 ## 🔮 Future Roadmap (Advancements)
 **Phase 1:** 📱PWA (Progressive Web App): Making UniSync installable on smartphones so students can access it like a native app without using an App Store.
+
 **Phase 2:** 🔔 Real-time socket notifications for campus alerts.
+
 **Phase 3:** 🤖 AI-powered study material summarization.
 
 👩‍💻 **Author**
+
 **Sneha Raj**
+
 **Passionate Full-Stack Developer focused on Campus Digitalization.**
 
 
