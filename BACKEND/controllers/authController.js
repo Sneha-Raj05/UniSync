@@ -1,4 +1,4 @@
-import User from '../models/user.js';
+import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
@@ -74,4 +74,5 @@ export const login = async (req, res) => {
         console.error('Login Error:', error.message);
         res.status(500).send('Server error during login');
     }
+
 };
