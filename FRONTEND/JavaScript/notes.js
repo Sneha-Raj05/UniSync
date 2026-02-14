@@ -1,4 +1,4 @@
-const baseURL = 'http://localhost:8080/api/notes';
+const baseURL = 'https://unisync-sneha-raj05s-projects.vercel.app/api/notes';
 const notesContainer = document.querySelector(".card-container");
 const realFileInput = document.getElementById("realFileInput");
 const browseBtnTemp = document.getElementById("browse-btn-temp");
@@ -96,7 +96,7 @@ function renderNoteCard(note) {
     if (!note || !note._id) return;
     const card = document.createElement("div");
     card.classList.add("card");
-    const fullFilePath = note.filePath ? `http://localhost:8080/${note.filePath}` : null;
+    const fullFilePath = note.filePath ? `https://unisync-sneha-raj05s-projects.vercel.app/${note.filePath}` : null;
 
     card.innerHTML = `
         <img src="./assets/default-note.png" class="card-img" alt="Note" style="width:100%; height:180px; object-fit:contain; padding:10px;">
@@ -276,4 +276,5 @@ if (bottomAddBtn) {
 }
 
 browseBtnTemp.onclick = () => realFileInput.click();
+
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
