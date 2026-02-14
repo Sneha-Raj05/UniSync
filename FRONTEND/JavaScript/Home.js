@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // ==== ELEMENTS ====
     const authButton = document.getElementById("auth-button");
     const heroButton = document.getElementById("hero-main-button");
     const heroText = document.getElementById("hero-welcome-text");
@@ -173,4 +172,5 @@ document.addEventListener("DOMContentLoaded", () => {
             updateIcon();
         });
     }
+
 });
