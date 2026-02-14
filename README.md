@@ -4,24 +4,31 @@
 
 ## ✨ Features
 
-* 👤 **Advanced Student Profile:** *
+* 👤 **Advanced Student Profile:** 
+    
     * **Profile Photo:** Students can upload and update their profile pictures for a personalized experience.
     * **Edit Details:** Users have the flexibility to **modify** their personal details and account information.
     * **Activity Stats:** Real-time tracking of uploaded notes and registered events.
 
-*📚 **Academic Notes Hub:** 
+* 📚 **Academic Notes Hub:**
+    
     * **Upload:** Share study materials with the community.
     * **Edit/Update:** Modify your notes whenever required.
     * **Delete:** Remove your uploaded notes with a single click.
 
+
 * 📅 **Event Management:** Browse upcoming campus events and  register instantly.
+
 
 * 💳 **Secure Payments:**  Integrated payment flow for event tickets and campus services.
 
+
 * 💬 **Dynamic Review System:**
+    
     * **Write:** Share feedback on campus facilities.
     * **Edit:** Refine your existing reviews.
     * **Delete:** Remove your feedback at any time.
+
 
 * 🌓 **Global Dark Theme:** A persistent **Moon Icon** toggle that saves your preference using LocalStorage.
 
