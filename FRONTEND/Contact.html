@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events</title>
+    <link rel="stylesheet" href="Contact.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+    if (!localStorage.getItem("token")) {
+        window.location.href = "Login.html"; 
+    }
+   </script>
+</head>
+<body>
+     <nav class="navbar">
+       <div class="nav-left">
+                 <img src="assets/image.png" alt="img" class="png">
+                  <a class="nav-item" href="Home.html">
+                    <i class="fa-solid fa-house"></i> Home
+                  </a>&nbsp;&nbsp;
+                  <a class="nav-item" href="Notes.html">
+                    <i class="fa-solid fa-note-sticky"></i> Notes
+                  </a>&nbsp;&nbsp;
+                  <a class="nav-item" href="Events.html">
+                    <i class="fa-solid fa-address-card"></i> Events
+                  </a>&nbsp;&nbsp;
+                  <a class="nav-item" href="Profile.html">
+                    <i class="fa-solid fa-user"></i> Profile
+                  </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="registeredNav" href="Registered.html"> 
+                    <i class="fa-solid fa-calendar"></i> Registered
+                  </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Review.html"> 
+               <i class="fa-solid fa-star-half-stroke"></i> Rate Us
+                 </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Contact.html"> 
+               <i class="fa-solid fa-phone"></i> Contact Us
+                 </a>
+        </div>
+        <div class="nav-right">
+    <button class="nav-item" id="logoutBtn" type="button">
+        Logout
+    </button>
+</div>
+</nav>
+<header class="contact-header">
+        <h1>Get In Touch</h1>
+        <p>In case of any query, please Contact Us!</p>
+    </header>
+
+    <main class="contact-container">
+        <div class="contact-grid">
+            
+            <div class="contact-info">
+                <div class="info-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>support@unisync.com</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>+91 98765 43210</p>
+                </div>
+                <div class="info-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Visit Us</h3>
+                    <p>Indore, Madhya Pradesh</p>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <form id="contactForm">
+                    <div class="input-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="What are the Issues you are facing" required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn">
+                        Send Message <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </main>
+
+    <div class="footer">
+        <p>© 2025 UniSync | Made with <span style="color: red;">&#x2764;</span> by Sneha Raj</p>
+    </div>
+
+    <script src="JavaScript/Contact.js"></script>
+</body>
+</html>
+    
