@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes</title>
+    <link rel="stylesheet" href="Notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script>
+    if (!localStorage.getItem("token")) {
+        window.location.href = "Login.html"; 
+    }
+   </script>
+</head>
+<body>
+    <nav class="navbar">
+       <div class="nav-left">
+             <img src="assets/image.png" alt="img" class="png">
+             <a class="nav-item" href="Home.html">
+               <i class="fa-solid fa-house"></i> Home
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Notes.html">
+               <i class="fa-solid fa-note-sticky"></i> Notes
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Events.html">
+               <i class="fa-solid fa-address-card"></i> Events
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Profile.html">
+               <i class="fa-solid fa-user"></i> Profile
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" id="registeredNav" href="Registered.html"> 
+               <i class="fa-solid fa-calendar"></i> Registered
+             </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Review.html"> 
+               <i class="fa-solid fa-star-half-stroke"></i> Rate Us
+                 </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Contact.html"> 
+               <i class="fa-solid fa-phone"></i> Contact Us
+                 </a>
+       </div>
+       <div >
+           <button class="nav-item">Login </button>
+       </div>
+    </nav>
+
+    <div class="notes">
+        <h1 class="h1">📚 Class Notes</h1>
+        <h3>Access and share study materials easily.</h3>
+    </div>
+
+    <div class="main-login">
+        <form >
+              
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload Notes: <button type="button" class="bro" id="browse-btn-temp">Browse</button><br/><br/>
+              
+              <input type="file" id="realFileInput" style="display: none;" accept="application/pdf, image/*, application/vnd.ms-powerpoint, application/vnd.openxmlformats-officedocument.presentationml.presentation" **aria-label="Note file selector"**>
+              
+              <i class="fa-solid fa-heading"></i> Title: <input type="text" name="sname" id="noteTitle" placeholder="Enter the title"><br/>
+              <i class="fa-solid fa-book"></i> Subject Name: <input type="text" name="sname" id="noteSubject" placeholder="Enter the subject name"><br/>
+              
+              <i class="fa-solid fa-circle-info"></i> Description: <input type="text" name="des" id="noteDescription" **placeholder="Add a description"**><br/>
+              
+              <button type="button" class="sub" id="submit-btn">Submit</button>
+        </form>
+    </div>
+
+    <div class="card-container">
+    </div>
+      
+    <div class="fut">
+     <h2>You can upload PDFs,PPTs, or images of notes. Make sure to keep filenames clear!</h2>
+     <button id="bottom-add-btn">Upload</button>
+   </div>
+     <div id="popup" class="popup"></div>
+
+
+<div class="footer">
+         <p>© 2025 UniSync | Made with <span style="color: red;">&#x2764;</span> by Sneha Raj</p>
+    </div>
+
+    
+  <script src="./JavaScript/notes.js"></script>
+  <script src="./JavaScript/RouteGuard.js"></script>
+</body>
+</html>

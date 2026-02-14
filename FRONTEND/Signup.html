@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="Signup.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+       <div class="nav-left">
+             <img src="assets/image.png" alt="img" class="png">
+             <a class="nav-item" href="#">
+               <i class="fa-solid fa-house"></i> Home
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="#">
+               <i class="fa-solid fa-note-sticky"></i> Notes
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="#">
+               <i class="fa-solid fa-address-card"></i> Events
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="#">
+               <i class="fa-solid fa-user"></i> Profile
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" id="registeredNav" href="#"> 
+               <i class="fa-solid fa-calendar"></i> Registered
+             </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Review.html"> 
+               <i class="fa-solid fa-star-half-stroke"></i> Rate Us
+                 </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Contact.html"> 
+               <i class="fa-solid fa-phone"></i> Contact Us
+                 </a>
+       </div>
+       
+       <div >
+           <button class="nav-item">Login </button>
+       </div>
+
+    </nav>
+    <div>
+        <h1 class="h1">Create your UniSync Account <span class="emoji-fix">🎓</span></h1>
+    </div>
+    <hr style="width: 60px; border:2px solid #4F46EF;border-radius: 5px; margin: 8px auto;"/>
+
+    <div class="main-login">
+          <form action="/query">
+            <label for="login"></label>
+            <i class="fa-solid fa-image-portrait"></i> Full Name: <input type="text" name="log" id="login" placeholder="Enter your username"><br/>
+            <i class="fa-solid fa-square-envelope"></i> Email: <input type="text" name="email" id="login" placeholder="Enter your e-mail"><br/>
+            <i class="fa-solid fa-lock"></i> Password: <input type="password" name="password" id="login" placeholder="Enter your password"><br/>
+             <i class="fa-solid fa-lock"></i> Confirm Password: <input type="password" name="password" id="login" placeholder="Re-enter your password"><br/>
+            <i class="fa-solid fa-building-columns"></i> University: <input type="text" name="email" id="login" placeholder="Enter your University name"><br/>
+            <button class="log">SignUp</button>
+            
+            <h4>Already have an account? <a class="SignUp" href="Login.html">Login</a></h4> 
+            
+          </form>
+        </div>
+
+          <div class="footer">
+            <p>© 2025 UniSync | Made with <span style="color: red;">&#x2764;</span> by Sneha Raj</p>
+          </div>
+        
+
+          <script src="./JavaScript/SignUp.js"></script>
+
+</body>
+</html>

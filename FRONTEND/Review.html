@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard | UniSync</title>
+  <link rel="stylesheet" href="Review.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    if (!localStorage.getItem("token")) {
+        window.location.href = "Login.html"; 
+    }
+   </script>
+  <script>
+  if (localStorage.getItem("theme") === "dark") {
+    document.documentElement.classList.add("dark-mode");
+  }
+</script>
+</head>
+<body>
+  <nav class="navbar">
+       <div class="nav-left">
+             <img src="assets/image.png" alt="img" class="png">
+             <a class="nav-item" href="Home.html">
+               <i class="fa-solid fa-house"></i> Home
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Notes.html">
+               <i class="fa-solid fa-note-sticky"></i> Notes
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Events.html">
+               <i class="fa-solid fa-address-card"></i> Events
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" href="Profile.html">
+               <i class="fa-solid fa-user"></i> Profile
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" id="registeredNav" href="Registered.html"> 
+               <i class="fa-solid fa-calendar"></i> Registered
+             </a>&nbsp;&nbsp;
+             <a class="nav-item" id="reviewNav" href="Review.html"> 
+               <i class="fa-solid fa-star-half-stroke"></i> Rate Us
+             </a>&nbsp;&nbsp;
+                  <a class="nav-item" id="reviewNav" href="Contact.html"> 
+               <i class="fa-solid fa-phone"></i> Contact Us
+                 </a>
+       </div>
+       <div style="display: flex; align-items: center; gap: 15px;">
+      <button class="nav-item" id="logoutTopBtn" style="background:#ff4d4d; color:white; border-radius:10px; border:none; padding:8px 15px; cursor:pointer;">Logout</button>
+    </div>
+  </nav>
+  <div class="review-page">
+    <div class="review-wrapper">
+        <div class="review-card">
+            
+            <div class="review-header">
+                <h2>Give Us Your Feedback</h2>
+                <p>How was your experience with our notes and events?</p>
+            </div>
+
+            <div class="rating-section">
+                <div class="stars" id="starContainer">
+                    <i class="fa-solid fa-star" data-value="1"></i>
+                    <i class="fa-solid fa-star" data-value="2"></i>
+                    <i class="fa-solid fa-star" data-value="3"></i>
+                    <i class="fa-solid fa-star" data-value="4"></i>
+                    <i class="fa-solid fa-star" data-value="5"></i>
+                </div><br/>
+                <span id="ratingValue">Select Rating</span>
+            </div>
+
+            <div class="input-section">
+                <label for="userFeedback">Your Comments</label>
+                <textarea id="userFeedback" placeholder="What did you like the most? Any suggestions?"></textarea>
+            </div>
+
+            <div class="action-buttons">
+                <button type="button" id="submitReviewBtn" class="btn-primary">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Review
+                </button>
+                <a href="Profile.html" class="btn-secondary">
+                    <i class="fa-solid fa-arrow-left"></i> Back to Dashboard
+                </a>
+            </div>
+
+        </div>
+    </div>
+  </div>
+
+  <section class="wall-of-love">
+    <div class="wall-header">
+        <h1> Wall of Love <i class="fa-solid fa-heart" style="color: #ff4d4d;"></i></h1>
+        <p style="font-size: x-large; font-weight: bold;">"See what our community is saying about UniSync"</p>
+        <hr style="width: 60px; border:2px solid #4F46EF;border-radius: 5px; margin: 8px auto;" />
+    </div>
+    <div id="reviewsDisplay" class="reviews-grid">
+        </div>
+</section>
+
+<div id="customModal" class="modal-overlay">
+    <div class="modal-content">
+        <h3 id="modalTitle">Details Required</h3>
+        <p id="modalMessage"></p>
+        <div id="modalInputs">
+            <input type="text" id="modalInput1" class="modal-field" placeholder="Name">
+            <input type="text" id="modalInput2" class="modal-field" placeholder="Registration ID">
+        </div>
+        <div class="modal-actions">
+            <button id="modalCancel" class="btn-secondary">Cancel</button>
+            <button id="modalConfirm" class="btn-primary">Confirm</button>
+        </div>
+    </div>
+</div>
+
+  <div class="footer">
+         <p>© 2025 UniSync | Made with <span style="color: red;">&#x2764;</span> by Sneha Raj</p>
+    </div>
+
+
+
+  <script src="./JavaScript/Review.js"></script>
+</body>
+</html>
