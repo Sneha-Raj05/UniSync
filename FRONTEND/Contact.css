@@ -8,7 +8,7 @@ a {
     text-decoration: none;
     color: inherit;
 }
-/* NAVBAR */
+
 .navbar{
     display: flex;
     justify-content: space-between;
@@ -47,7 +47,6 @@ a {
     height: 40px; 
     width: auto; 
 }
-/* --- Global Styles for Contact Section --- */
 * {
     margin: 0;
     padding: 0;
@@ -59,7 +58,6 @@ body {
     background-color: #f8fafc;
 }
 
-/* --- Contact Hero Header --- */
 .contact-header {
     text-align: center;
     padding: 80px 20px;
@@ -77,11 +75,9 @@ body {
     opacity: 0.9;
     font-size: 1.1rem;
 }
-
-/* --- Contact Container & Grid --- */
 .contact-container {
     max-width: 1200px;
-    margin: -60px auto 60px; /* Moves section up over the header for modern look */
+    margin: -60px auto 60px; 
     padding: 0 20px;
 }
 
@@ -92,7 +88,6 @@ body {
     align-items: start;
 }
 
-/* --- Left Side: Info Cards --- */
 .contact-info {
     display: flex;
     flex-direction: column;
@@ -131,7 +126,6 @@ body {
     font-size: 1rem;
 }
 
-/* --- Right Side: Contact Form --- */
 .contact-form-section {
     background: white;
     padding: 45px;
@@ -198,8 +192,6 @@ body {
 .send-btn i {
     font-size: 1rem;
 }
-
-/* --- Footer --- */
 .footer {
     text-align: center;
     padding: 42px;
@@ -209,7 +201,6 @@ body {
     color: #444;
 }
 
-/* --- Mobile Responsive --- */
 @media (max-width: 850px) {
     .contact-grid {
         grid-template-columns: 1fr;
@@ -228,7 +219,7 @@ body {
     }
 }
 #logoutBtn {
-    background: #ff3561; /* Red Colour */
+    background: #ff3561;
     color: white;
     border: none;
     padding: 8px 18px;
@@ -245,3 +236,4 @@ body {
 #logoutBtn:active {
     transform: scale(0.95);
 }
+
