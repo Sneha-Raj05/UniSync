@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const CONFIG = {
-        BASE_URL: "http://localhost:8080",
+        BASE_URL: "https://unisync-sneha-raj05s-projects.vercel.app/",
         ENDPOINTS: {
             FETCH: "/api/registrations/my-events",
             CONFIRM: "/api/registrations/confirm/",
@@ -245,4 +245,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const bottomBtn = document.getElementById("bottomLogout");
     if (topBtn) topBtn.onclick = handleLogout;
     if (bottomBtn) bottomBtn.onclick = handleLogout;
+
 });
