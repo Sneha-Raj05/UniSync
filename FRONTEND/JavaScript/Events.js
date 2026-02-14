@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const baseURL = 'http://localhost:8080/api/events';
-    const registrationURL = 'http://localhost:8080/api/registrations'; 
+    const baseURL = 'https://unisync-sneha-raj05s-projects.vercel.app/api/events';
+    const registrationURL = 'https://unisync-sneha-raj05s-projects.vercel.app/api/registrations'; 
     const token = localStorage.getItem('token');
     
     const userEmail = localStorage.getItem('userEmail') || ''; 
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("card");
         const isAlreadyRegistered = userRegistrations.some(reg => reg.eventId && reg.eventId._id === event._id);
-        const imageSource = event.image ? `http://localhost:8080/${event.image.replace(/\\/g, '/')}` : 'assets/default.png';
+        const imageSource = event.image ? `https://unisync-sneha-raj05s-projects.vercel.app//${event.image.replace(/\\/g, '/')}` : 'assets/default.png';
         
         card.innerHTML = `
             <img src="${imageSource}" class="card-img">
@@ -322,4 +322,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (form) form.addEventListener('submit', handleSubmitEvent);
     getEvents();
+
 });
