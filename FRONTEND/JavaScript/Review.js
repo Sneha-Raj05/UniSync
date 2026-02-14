@@ -1,6 +1,6 @@
 
 const CONFIG = {
-    BASE_URL: "https://unisync-sneha-raj05s-projects.vercel.app/",
+    BASE_URL: "https://uni-sync-sam7.vercel.app/",
     TOKEN: localStorage.getItem("token")
 };
 
@@ -288,3 +288,4 @@ document.addEventListener("DOMContentLoaded", () => {
     loadReviews();
 
 });
+
