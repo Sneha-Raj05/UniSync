@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const token = localStorage.getItem('token');
-    const apiURL = 'http://localhost:8080/api/auth';
+    const apiURL = 'https://unisync-sneha-raj05s-projects.vercel.app/api/auth';
 
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === "dark") {
@@ -156,12 +156,12 @@ document.addEventListener("DOMContentLoaded", () => {
         container.style.maxHeight = "400px";
         container.style.overflowY = "auto";
         try {
-            const res = await fetch('http://localhost:8080/api/notes', { headers: { 'Authorization': `Bearer ${token}` } });
+            const res = await fetch('https://unisync-sneha-raj05s-projects.vercel.app/api/notes', { headers: { 'Authorization': `Bearer ${token}` } });
             const notes = await res.json();
             document.getElementById("statNotes").innerText = notes.length;
             if (notes.length > 0) {
                 container.innerHTML = notes.map(note => {
-                    const fullFilePath = note.filePath ? `http://localhost:8080/${note.filePath.replace(/\\/g, '/')}` : null;
+                    const fullFilePath = note.filePath ? `https://unisync-sneha-raj05s-projects.vercel.app/${note.filePath.replace(/\\/g, '/')}` : null;
                     return `
                     <div class="note-item" style="margin-bottom: 15px;">
                         <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; cursor: pointer;" 
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById("recentActivityContainer");
         if (!container) return;
         try {
-            const res = await fetch('http://localhost:8080/api/registrations/my-events', { headers: { 'Authorization': `Bearer ${token}` } });
+            const res = await fetch('https://unisync-sneha-raj05s-projects.vercel.app/api/registrations/my-events', { headers: { 'Authorization': `Bearer ${token}` } });
             const registrations = await res.json();
             document.getElementById("statEvents").innerText = registrations.length;
             if (registrations.length > 0) {
@@ -339,4 +339,5 @@ document.addEventListener("DOMContentLoaded", () => {
     injectStyles();
     loadProfile();
     initLogout();
+
 });
