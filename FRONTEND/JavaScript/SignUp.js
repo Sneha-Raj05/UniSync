@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             signupBtn.textContent = 'Signing Up...';
 
             try {
-                const response = await fetch('http://localhost:8080/api/auth/signup', {
+                const response = await fetch('https://unisync-sneha-raj05s-projects.vercel.app/api/auth/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -129,4 +129,5 @@ document.addEventListener("DOMContentLoaded", () => {
             setTimeout(() => popup.remove(), 500);
         }, 1800);
     }
+
 });
