@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-    const baseURL = 'https://uni-sync-sam7.vercel.app/api/events';
-    const registrationURL = 'https://uni-sync-sam7.vercel.app/api/registrations'; 
+    const baseURL = 'https://unisync-backend-final.vercel.app/api/events';
+    const registrationURL = 'https://unisync-backend-final.vercel.app/api/registrations'; 
     const token = localStorage.getItem('token');
     
     const userEmail = localStorage.getItem('userEmail') || ''; 
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const card = document.createElement("div");
         card.classList.add("card");
         const isAlreadyRegistered = userRegistrations.some(reg => reg.eventId && reg.eventId._id === event._id);
-        const imageSource = event.image ? `https://uni-sync-sam7.vercel.app/${event.image.replace(/\\/g, '/')}` : 'assets/default.png';
+        const imageSource = event.image ? `https://unisync-backend-final.vercel.app/${event.image.replace(/\\/g, '/')}` : 'assets/default.png';
         
         card.innerHTML = `
             <img src="${imageSource}" class="card-img">
@@ -324,4 +324,5 @@ document.addEventListener("DOMContentLoaded", () => {
     getEvents();
 
 });
+
 
