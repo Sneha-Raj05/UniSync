@@ -76,7 +76,7 @@ body {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 .nav-left { display: flex; align-items: center; gap: 15px; }
-.nav-item { text-decoration: none; color: inherit; font-size: 1rem; }
+.nav-item { text-decoration: none; color: inherit; font-size: 0.93rem; }
 .png { height: 40px; width: auto; }
 
 
@@ -207,6 +207,7 @@ textarea:focus { border-color: var(--primary-purple); }
     border-radius: 10px; border: 1px solid var(--border-color);
     box-sizing: border-box;
 }
+
 
 
 .footer { padding: 30px; text-align: center; background: #eee; margin-top: 50px; }
