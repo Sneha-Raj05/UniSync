@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     const CONFIG = {
-        BASE_URL: "https://uni-sync-sam7.vercel.app/",
+        BASE_URL: "https://unisync-backend-final.vercel.app/",
         ENDPOINTS: {
             FETCH: "/api/registrations/my-events",
             CONFIRM: "/api/registrations/confirm/",
@@ -247,4 +247,5 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
