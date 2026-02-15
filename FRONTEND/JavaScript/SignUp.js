@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
             signupBtn.textContent = 'Signing Up...';
 
             try {
-                const response = await fetch('https://uni-sync-sam7.vercel.app/api/auth/signup', {
+                const response = await fetch('https://unisync-backend-final.vercel.app/api/auth/signup', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -131,4 +131,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
