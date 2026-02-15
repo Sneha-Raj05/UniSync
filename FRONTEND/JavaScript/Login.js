@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             try {
-                const response = await fetch('https://uni-sync-sam7.vercel.app/api/auth/login', {
+                const response = await fetch('https://unisync-backend-final.vercel.app/api/auth/login', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email, password })
@@ -94,4 +94,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
