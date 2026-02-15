@@ -31,6 +31,8 @@ app.use('/api/auth', authRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/reviews", reviewRoutes);
 
+console.log("Connecting to:", process.env.MONGO_URL ? "URL Loaded" : "URL is EMPTY");
+
 mongoose
   .connect(process.env.MONGO_URL) 
   .then(() => console.log("Connected to MongoDB successfully"))
@@ -44,4 +46,5 @@ app.get("/", (req, res) => {
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is listening to port ${PORT}`);
+
 });
