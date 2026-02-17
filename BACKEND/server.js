@@ -19,7 +19,11 @@ const __dirname = path.dirname(__filename);
 const app = express();
 app.use(express.json({ limit: '50mb' })); 
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
-app.use(cors());
+
+app.use(cors({
+  origin: ["https://uni-sync-five.vercel.app", "http://localhost:3000"], // Apna frontend link dalo
+  credentials: true
+}));
 
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -34,9 +38,17 @@ app.use("/api/reviews", reviewRoutes);
 console.log("Connecting to:", process.env.MONGO_URL ? "URL Loaded" : "URL is EMPTY");
 
 mongoose
-  .connect(process.env.MONGO_URL) 
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch((err) => console.error("MongoDB connection failed:", err.message));
+  .connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, 
+  }) 
+  .then(() => {
+    console.log("Connected to MongoDB successfully");
+  })
+  .catch((err) => {
+    console.error("MongoDB connection failed:", err.message);
+  });
 
 
 app.get("/", (req, res) => {
@@ -48,3 +60,4 @@ app.listen(PORT, () => {
   console.log(`Server is listening to port ${PORT}`);
 
 });
+
