@@ -128,9 +128,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 } catch (error) {
     modalBox.innerHTML = `
-        <h2 style="color:#dc2626; font-weight:900;">Payment Failed ❌</h2>
+        <h2 style="color:#dc2626; font-weight:900;">Payment Failed </h2>
         <p style="margin-top:10px;">Please try again.</p>
     `;
+
+      setTimeout(() => {
+    m.style.opacity = "0";
+    setTimeout(() => m.remove(), 300);
+}, 3000);
 }
 
         };
@@ -261,6 +266,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
 
 
