@@ -109,22 +109,30 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             try {
-                const response = await fetch(`${CONFIG.BASE_URL}${CONFIG.ENDPOINTS.CONFIRM}${reg._id}`, { 
-                    method: 'PATCH', 
-                    headers: { 
-                      "Authorization": `Bearer ${CONFIG.AUTH_TOKEN}`,
-                      "Content-Type": "application/json" 
-              } 
-          });
-            if (response.ok) {
-                forcePaid();
-            }else{
-                console.error("Server error, but forcing UI update");
-                forcePaid();
+    const response = await fetch(
+        `${CONFIG.BASE_URL}${CONFIG.ENDPOINTS.CONFIRM}${reg._id}`,
+        {
+            method: 'PATCH',
+            headers: {
+                "Authorization": `Bearer ${CONFIG.AUTH_TOKEN}`,
+                "Content-Type": "application/json"
             }
-            }catch (e) {
-                forcePaid();
-            }
+        }
+    );
+
+    if (!response.ok) {
+        throw new Error("Payment failed");
+    }
+
+    forcePaid();  
+
+} catch (error) {
+    modalBox.innerHTML = `
+        <h2 style="color:#dc2626; font-weight:900;">Payment Failed ❌</h2>
+        <p style="margin-top:10px;">Please try again.</p>
+    `;
+}
+
         };
     };
 
@@ -171,7 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const event = reg.eventId;
             if (!event) return;
 
-            const isForcedPaid = localStorage.getItem(`event_paid_${reg._id}`) === 'true';
             const displayStatus = reg.status;
             const isPaid = displayStatus === 'Paid';
 
@@ -221,7 +228,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     try {
                         const res = await fetch(CONFIG.BASE_URL + CONFIG.ENDPOINTS.DELETE + reg._id, { method: 'DELETE', headers: { "Authorization": `Bearer ${CONFIG.AUTH_TOKEN}` } });
                         if (res.ok) { 
-                            localStorage.removeItem(`event_paid_${reg._id}`); 
                             m.remove(); 
                             loadData(); 
                         }
@@ -255,6 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
 
 
