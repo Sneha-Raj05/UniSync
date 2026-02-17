@@ -1,3 +1,4 @@
+console.log("HOME JS FILE LOADED");
 
 document.addEventListener("DOMContentLoaded", () => {
     
@@ -179,6 +180,7 @@ authButton.onclick = (e) => {
     }
 
 });
+
 
 
 
