@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loginForm = document.getElementById('loginForm');
     
     if (localStorage.getItem('token')) {
-        window.location.href = 'Home.html';
+        window.location.href = 'index.html';
         return;
     }
 
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (result.user.role === 'organizer') {
                             window.location.href = 'Events.html';
                         } else {
-                            window.location.href = 'Home.html';
+                            window.location.href = 'index.html';
                         }
                     }, 1500);
 
@@ -94,5 +94,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
 
