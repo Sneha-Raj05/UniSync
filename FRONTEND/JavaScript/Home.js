@@ -56,7 +56,7 @@ if (!token) {
         document.getElementById("confirmExit").onclick = () => {
             localStorage.removeItem('token');
             localStorage.removeItem('username');
-            window.location.href = 'Home.html';
+            window.location.href = 'index.html';
         };
         document.getElementById("cancelExit").onclick = () => overlay.remove();
     };
@@ -115,7 +115,7 @@ authButton.onclick = (e) => {
 
     
 
-    if (homeLink) homeLink.addEventListener("click", () => window.location.href = "Home.html");
+    if (homeLink) homeLink.addEventListener("click", () => window.location.href = "index.html");
     if (notesLink) notesLink.addEventListener("click", () => window.location.href = "Notes.html");
     if (eventsLink) eventsLink.addEventListener("click", () => window.location.href = "Events.html");
     if (profileLink) profileLink.addEventListener("click", () => window.location.href = "Profile.html");
@@ -186,6 +186,7 @@ authButton.onclick = (e) => {
     }
 
 });
+
 
 
 
