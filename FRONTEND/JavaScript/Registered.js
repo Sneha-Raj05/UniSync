@@ -108,13 +108,19 @@ document.addEventListener("DOMContentLoaded", () => {
             };
 
             try {
-                const targetId = reg._id.split(':')[0];
-                await fetch(`${CONFIG.BASE_URL}${CONFIG.ENDPOINTS.CONFIRM}${targetId}`, { 
+                const response = await fetch(`${CONFIG.BASE_URL}${CONFIG.ENDPOINTS.CONFIRM}${reg._id}`, { 
                     method: 'PATCH', 
-                    headers: { "Authorization": `Bearer ${CONFIG.AUTH_TOKEN}` } 
-                });
+                    headers: { 
+                      "Authorization": `Bearer ${CONFIG.AUTH_TOKEN}`,
+                      "Content-Type": "application/json" 
+              } 
+          });
+            if (response.ok) {
                 forcePaid();
-            } catch (e) {
+            }else{
+                console.error("Server error, but forcing UI update");
+                forcePaid();
+            }catch (e) {
                 forcePaid();
             }
         };
@@ -247,6 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
 
 
