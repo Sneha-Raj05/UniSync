@@ -21,14 +21,13 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(cors({
-  origin: [
-    "https://uni-sync-iota.vercel.app", 
-    "http://localhost:8080", 
-    "http://127.0.0.1:5500" // Ye line local testing ke liye "Insurance" hai
-  ],
+  origin: "https://uni-sync-iota.vercel.app", 
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
 
+app.options("*", cors());
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -64,5 +63,6 @@ app.listen(PORT, () => {
   console.log(`Server is listening to port ${PORT}`);
 
 });
+
 
 
