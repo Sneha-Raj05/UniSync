@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileLink = document.getElementById('profile-nav');
     const registeredLink = document.getElementById('registered-nav'); 
 
-    const username = localStorage.getItem('username');
+   
     
 if (!token) {
     authButton.textContent = "Login";
@@ -186,6 +186,7 @@ authButton.onclick = (e) => {
     }
 
 });
+
 
 
 
