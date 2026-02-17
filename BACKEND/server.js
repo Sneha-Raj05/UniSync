@@ -22,15 +22,13 @@ const app = express();
 app.use(express.json({ limit: '50mb' })); 
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
-// Sahi CORS setup
+
 app.use(cors({
   origin: "https://uni-sync-iota.vercel.app", 
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
-
-// Yahan se app.options wali line hata di gayi hai taaki PathError na aaye
 
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
@@ -43,17 +41,30 @@ app.use("/api/reviews", reviewRoutes);
 app.get("/", (req, res) => {
   res.send("Welcome to UniSync Backend is LIVE!");
 });
+let isConnected = false; 
 
-// MongoDB Connection
-mongoose
-  .connect(process.env.MONGO_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }) 
-  .then(() => console.log("Connected to MongoDB successfully"))
-  .catch((err) => console.error("MongoDB connection failed:", err.message));
+const connectDB = async () => {
+    if (isConnected) {
+        console.log("=> Using existing database connection");
+        return;
+    }
 
-// Vercel compatibility ke liye check
+    console.log("=> Creating new database connection");
+    try {
+        const db = await mongoose.connect(process.env.MONGO_URL, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            serverSelectionTimeoutMS: 5000, 
+        });
+        
+        isConnected = db.connections[0].readyState;
+        console.log("Connected to MongoDB successfully");
+    } catch (err) {
+        console.error("MongoDB connection failed:", err.message);
+        throw err; 
+    }
+};
+
 if (process.env.NODE_ENV !== 'production') {
     const PORT = process.env.PORT || 8080;
     app.listen(PORT, () => {
@@ -62,3 +73,4 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default app; // Sabse important line Vercel ke liye
+
