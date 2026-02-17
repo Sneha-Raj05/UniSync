@@ -21,7 +21,11 @@ app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(cors({
-  origin: ["https://uni-sync-five.vercel.app", "http://localhost:3000"], // Apna frontend link dalo
+  origin: [
+    "https://uni-sync-iota.vercel.app", 
+    "http://localhost:8080", 
+    "http://127.0.0.1:5500" // Ye line local testing ke liye "Insurance" hai
+  ],
   credentials: true
 }));
 
@@ -60,4 +64,5 @@ app.listen(PORT, () => {
   console.log(`Server is listening to port ${PORT}`);
 
 });
+
 
