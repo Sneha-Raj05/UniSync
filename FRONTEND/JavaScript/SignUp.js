@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     const loginRedirectURL = "Login.html";
-    const homeRedirectURL = "Home.html";
+    const homeRedirectURL = "index.html";
 
     const signupBtn = document.querySelector(".log"); 
 
@@ -131,5 +131,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
 
