@@ -104,7 +104,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         <p style="color:#64748b; font-weight:600; margin-bottom:20px;">Updating Dashboard...</p>
                     </div>
                 `;
-                setTimeout(() => { window.location.reload(); }, 1500);
+                setTimeout(() => {   m.remove();
+                                    loadData(); }, 1000);
             };
 
             try {
@@ -254,6 +255,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
 
 
