@@ -3,6 +3,7 @@ import { signup, login } from '../controllers/authController.js';
 import auth from '../middleware/auth.js';
 import User from "../models/User.js";
 
+
 const router = express.Router();
 
 router.post('/signup', signup);
@@ -46,5 +47,6 @@ router.put('/update-profile', auth, async (req, res) => {
         res.status(500).json({ message: "Update failed" });
     }
 });
+
 
 export default router;
