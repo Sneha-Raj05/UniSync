@@ -2,11 +2,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const token = localStorage.getItem("token");
-
-    if (!token) {
-        window.location.href = "Login.html";
-        return; 
-    }
     const authButton = document.getElementById("auth-button");
     const heroButton = document.getElementById("hero-main-button");
     const heroText = document.getElementById("hero-welcome-text");
@@ -18,9 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     const profileLink = document.getElementById('profile-nav');
     const registeredLink = document.getElementById('registered-nav'); 
 
-    const token = localStorage.getItem('token');
     const username = localStorage.getItem('username');
-    const isLoggedIn = !!token;
+    
+if (!token) {
+    authButton.textContent = "Login";
+    authButton.onclick = () => window.location.href = "Login.html";
+
+    heroButton.textContent = "Get Started!";
+    heroButton.style.display = "inline-block";
+    heroButton.onclick = () => window.location.href = "Signup.html";
+
+    return;
+}
 
     const showLogoutModal = () => {
         const overlay = document.createElement("div");
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    if (isLoggedIn) {
+  
         authButton.textContent = "Logout";
 
         authButton.style.cssText = `
@@ -93,23 +97,16 @@ document.addEventListener("DOMContentLoaded", () => {
             </a>
         `;
         
-        if (!document.getElementById('dynamic-cta-buttons')) {
-            heroSection.appendChild(buttonContainer);
-        }
+        if (!heroSection.querySelector('#dynamic-cta-buttons')) {
+    heroSection.appendChild(buttonContainer);
+      }
 
-        authButton.addEventListener("click", (e) => {
-            e.preventDefault();
-            showLogoutModal();
-        });
-        
-    } else {
-        authButton.textContent = "Login";
-        authButton.style.backgroundColor = "#007bff"; 
-        authButton.style.color = "#fff";
-        heroButton.textContent = "Get Started!"; 
-        authButton.addEventListener("click", () => window.location.href = "Login.html");
-        heroButton.addEventListener("click", () => window.location.href = "Signup.html");
-    }
+authButton.onclick = (e) => {
+    e.preventDefault();
+    showLogoutModal();
+};
+
+    
 
     if (homeLink) homeLink.addEventListener("click", () => window.location.href = "Home.html");
     if (notesLink) notesLink.addEventListener("click", () => window.location.href = "Notes.html");
@@ -182,5 +179,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
 
 
