@@ -11,7 +11,9 @@ import authRoutes from "./routes/authRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
 import { fileURLToPath } from 'url'; 
 
-dotenv.config();
+if (process.env.NODE_ENV !== 'production') {
+    dotenv.config();
+}
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -40,6 +42,9 @@ app.use("/api/reviews", reviewRoutes);
 
 console.log("Connecting to:", process.env.MONGO_URL ? "URL Loaded" : "URL is EMPTY");
 
+const mongoURI = process.env.MONGO_URL;
+console.log("Attempting to connect with URI:", mongoURI ? "URI exists" : "URI IS UNDEFINED");
+
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
@@ -63,6 +68,7 @@ app.listen(PORT, () => {
   console.log(`Server is listening to port ${PORT}`);
 
 });
+
 
 
 
