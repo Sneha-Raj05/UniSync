@@ -1,3 +1,7 @@
+if (!localStorage.getItem("token")) {
+    window.location.href = "Login.html";
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     const authButton = document.getElementById("auth-button");
     const heroButton = document.getElementById("hero-main-button");
@@ -174,3 +178,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+
