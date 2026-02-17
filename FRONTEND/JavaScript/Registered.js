@@ -120,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }else{
                 console.error("Server error, but forcing UI update");
                 forcePaid();
+            }
             }catch (e) {
                 forcePaid();
             }
@@ -253,6 +254,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (bottomBtn) bottomBtn.onclick = handleLogout;
 
 });
+
 
 
 
