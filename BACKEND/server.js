@@ -25,7 +25,7 @@ app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 app.use(cors({
   origin: "https://uni-sync-iota.vercel.app", 
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true
 }));
@@ -78,5 +78,6 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default app; // Sabse important line Vercel ke liye
+
 
 
