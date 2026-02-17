@@ -1,6 +1,12 @@
 console.log("HOME JS FILE LOADED");
 
 document.addEventListener("DOMContentLoaded", () => {
+
+    if (!authButton || !heroButton) {
+    console.error("Buttons not found");
+    return;
+}
+
     
     const token = localStorage.getItem("token");
     const authButton = document.getElementById("auth-button");
@@ -180,6 +186,7 @@ authButton.onclick = (e) => {
     }
 
 });
+
 
 
 
