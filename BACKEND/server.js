@@ -30,6 +30,11 @@ app.use(cors({
   credentials: true
 }));
 
+app.use(async (req, res, next) => {
+    await connectDB();
+    next();
+});
+
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.use("/api/registrations", registrationRoutes);
@@ -73,4 +78,5 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default app; // Sabse important line Vercel ke liye
+
 
