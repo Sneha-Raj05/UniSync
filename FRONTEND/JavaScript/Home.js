@@ -1,18 +1,18 @@
 console.log("HOME JS FILE LOADED");
 
 document.addEventListener("DOMContentLoaded", () => {
-
-    if (!authButton || !heroButton) {
-    console.error("Buttons not found");
-    return;
-}
-
-    
-    const token = localStorage.getItem("token");
     const authButton = document.getElementById("auth-button");
     const heroButton = document.getElementById("hero-main-button");
     const heroText = document.getElementById("hero-welcome-text");
     const heroSection = document.querySelector(".hero");
+    const token = localStorage.getItem("token");
+    const username = localStorage.getItem('username');
+
+
+    if (!authButton || !heroButton) {
+        console.error("Buttons not found in HTML");
+        return;
+    }
 
     const homeLink = document.getElementById('home-nav');
     const notesLink = document.getElementById('notes-nav');
@@ -186,6 +186,7 @@ authButton.onclick = (e) => {
     }
 
 });
+
 
 
 
