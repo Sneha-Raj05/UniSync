@@ -12,24 +12,21 @@ let deleteModal = null;
 let editModal = null;
 let currentNoteId = null;
 
+// --- 1. THEME & STYLES (A TO Z) ---
 const injectStyles = () => {
     if (document.getElementById('theme-styles')) return;
     const style = document.createElement('style');
     style.id = 'theme-styles';
     style.innerHTML = `
-        body { transition: background 0.3s ease; }
+        body { transition: background 0.3s ease, color 0.3s ease; }
         
-        /* Navbar Hover */
-        .nav-item { transition: color 0.3s ease !important; cursor: pointer; text-decoration: none; }
-        .nav-item:hover { color: #007bff !important; }
-
-        /* DARK MODE - Core Colors */
-        body.dark-mode { background-color: #0f172a !important; }
+        /* DARK MODE CORE */
+        body.dark-mode { background-color: #0f172a !important; color: #ffffff !important; }
         body.dark-mode .navbar { background: #1e293b !important; border-bottom: 1px solid #334155 !important; }
+        body.dark-mode h1, body.dark-mode h2, body.dark-mode .h1 { color: #ffffff !important; }
         body.dark-mode .nav-item { color: #f8fafc !important; }
-        body.dark-mode h1, body.dark-mode h3:not(.card-title), body.dark-mode .h1 { color: #ffffff !important; }
 
-        /* UPLOAD FORM DARK MODE FIX */
+        /* UPLOAD SECTION DARK MODE */
         body.dark-mode .main-login, body.dark-mode .upload-container { 
             background: #1e293b !important; 
             border: 1px solid #334155 !important; 
@@ -37,47 +34,44 @@ const injectStyles = () => {
         }
         body.dark-mode input, body.dark-mode textarea { 
             background: #0f172a !important; 
-            border: 1px solid #334155 !important; 
+            border: 1px solid #475569 !important; 
             color: white !important; 
         }
 
-        /* --- CARD TITLE & BUTTON FIX --- */
-        .card { background: white !important; border-radius: 12px; overflow: hidden; }
-        
-        /* Isse title aur text hamesha visible rahenge */
-        .card-title, .card-text, .card-body b { 
-            color: #1e293b !important; 
-            background: transparent !important; 
+        /* CARD STYLE - Notes White hi rahenge */
+        .card { 
+            background: #ffffff !important; 
+            border-radius: 12px; 
+            overflow: hidden; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s;
         }
+        .card-body { background: #ffffff !important; color: #1e293b !important; padding: 15px; }
+        .card-title { color: #1e293b !important; font-weight: bold; margin-bottom: 10px; }
+        .card-text { color: #475569 !important; margin-bottom: 5px; }
 
-        .card-actions button i {
-            background: transparent !important;
-            border: none !important;
-            margin-right: 5px !important;
-            display: inline-block !important;
+        /* BUTTONS */
+        .card-actions { display: flex; gap: 8px; margin-top: 15px; }
+        .card-actions button { 
+            flex: 1; border: none; padding: 10px; border-radius: 6px; 
+            cursor: pointer; color: white; font-weight: 600; font-size: 0.8rem;
+            display: flex; align-items: center; justify-content: center; gap: 5px;
         }
+        .view-btn { background: #3b82f6 !important; }
+        .edit-btn { background: #10b981 !important; }
+        .del-btn { background: #ef4444 !important; }
 
-        .card-actions button {
-            display: inline-flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            color: white !important;
-            border: none !important;
-            padding: 8px 15px !important;
-            border-radius: 6px !important;
-            cursor: pointer;
+        /* MODALS */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.75); display: none; justify-content: center; 
+            align-items: center; z-index: 10000;
         }
-
-        .view-btn { background-color: #007bff !important; }
-        .edit-btn { background-color: #27ae60 !important; }
-        .del-btn { background-color: #dc3545 !important; }
-        
-        /* Bottom Section Visibility */
-        .fut { padding: 40px; text-align: center; }
-        body.dark-mode .fut { background: #1e293b; color: white; }
     `;
     document.head.appendChild(style);
 };
+
+// --- 2. CORE LOGIC ---
 
 const applySavedTheme = () => {
     if (localStorage.getItem('theme') === 'dark') {
@@ -86,83 +80,75 @@ const applySavedTheme = () => {
 };
 
 function showPopup(message, type = 'success') {
-    const icon = type === 'success' ? '<i class="fa-solid fa-circle-check"></i>' : '<i class="fa-solid fa-circle-exclamation"></i>';
+    const icon = type === 'success' ? '✅' : '⚠️';
     popup.innerHTML = `${icon} ${message}`;
     popup.className = `popup show ${type}`;
     setTimeout(() => popup.classList.remove('show'), 3000);
 }
 
+// Render Card with Cloudinary Fix
 function renderNoteCard(note) {
     if (!note || !note._id) return;
     const card = document.createElement("div");
     card.classList.add("card");
 
-    const fullFilePath = note.filePath ? 
-        (note.filePath.startsWith('http') ? note.filePath : `https://unisync-backend-final.vercel.app/${note.filePath}`) 
-        : null;
+    const filePath = note.filePath || null;
 
     card.innerHTML = `
-        <img src="./assets/default-note.png" class="card-img" alt="Note" style="width:100%; height:180px; object-fit:contain; padding:10px;">
-        <div class="card-body" style="padding:15px; background: white;">
-            <h3 class="card-title" style="margin-top:0; font-size:1.2rem; font-weight:bold;">📘 ${note.title}</h3>
-            <p class="card-text" style="margin:8px 0;"><b>Subject:</b> ${note.subject}</p>
-            <p class="card-text" style="font-size:0.9rem; color:#666;">${note.description || "No description"}</p>
-            <div class="card-actions" style="display:flex; gap:10px; margin-top:15px;">
-                ${fullFilePath ? `<button class="view-btn"><i class="fa-solid fa-eye"></i> View</button>` : `<button disabled>No File</button>`}
+        <img src="./assets/default-note.png" class="card-img" alt="Note" style="width:100%; height:160px; object-fit:contain; padding:10px; background:#f1f5f9;">
+        <div class="card-body">
+            <h3 class="card-title">📘 ${note.title}</h3>
+            <p class="card-text"><b>Subject:</b> ${note.subject}</p>
+            <p class="card-text" style="font-size:0.85rem; height:40px; overflow:hidden;">${note.description || "No description provided."}</p>
+            <div class="card-actions">
+                <button class="view-btn"><i class="fa-solid fa-eye"></i> View</button>
                 <button class="edit-btn"><i class="fa-solid fa-pen"></i> Edit</button>
                 <button class="del-btn"><i class="fa-solid fa-trash"></i> Delete</button>
             </div>
         </div>
     `;
 
-    if (fullFilePath) card.querySelector(".view-btn").onclick = () => window.open(fullFilePath, "_blank");
-    card.querySelector(".del-btn").onclick = () => openDeleteConfirmation(note._id);
+    card.querySelector(".view-btn").onclick = () => filePath ? window.open(filePath, "_blank") : alert("No file found");
     card.querySelector(".edit-btn").onclick = () => openEditPopup(note);
+    card.querySelector(".del-btn").onclick = () => openDeleteConfirmation(note._id);
+    
     notesContainer.appendChild(card);
 }
 
+// Get All Notes
 async function getNotes() {
     const token = localStorage.getItem('token');
-    if(!token) {
-        notesContainer.innerHTML = "<p style='color: white;'>Please login to see your notes.</p>";
-        return;
-    }
-
-    notesContainer.innerHTML = "<p style='color: white;'>Loading your notes...</p>";
-
-    const res = await fetch(baseURL, { 
-       headers: { 
-        'x-auth-token': token
-      }
-
-    });
-
-    if (res.ok) {
+    if(!token) return notesContainer.innerHTML = "<p>Please login first.</p>";
+    
+    notesContainer.innerHTML = "<p>Loading notes...</p>";
+    try {
+        const res = await fetch(baseURL, { headers: { 'x-auth-token': token } });
         const data = await res.json();
-        notesContainer.innerHTML = ""; 
-        
-        if (data.length === 0) {
-            notesContainer.innerHTML = "<p style='color: white;'>No notes found for your account.</p>";
-        } else {
+        notesContainer.innerHTML = "";
+        if (res.ok && data.length > 0) {
             data.forEach(renderNoteCard);
+        } else {
+            notesContainer.innerHTML = "<p>No notes available.</p>";
         }
-    } else {
-        notesContainer.innerHTML = "<p style='color: red;'>Failed to load notes.</p>";
+    } catch (err) {
+        notesContainer.innerHTML = "<p>Error connecting to server.</p>";
     }
 }
 
+// --- 3. EDIT & DELETE MODALS ---
+
 function createEditModal() {
     editModal = document.createElement('div');
-    editModal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:9999;";
+    editModal.className = 'modal-overlay';
     editModal.innerHTML = `
-        <div style="background:white; padding:25px; border-radius:12px; width:90%; max-width:450px; font-family:'Poppins';">
-            <h3 style="margin-bottom:20px; color:#333;">📝 Edit Note Details</h3>
-            <input type="text" id="editTitle" placeholder="Title" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
-            <input type="text" id="editSubject" placeholder="Subject" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
-            <textarea id="editDesc" placeholder="Description" rows="4" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;"></textarea>
-            <div style="display:flex; gap:12px;">
-                <button id="saveEdit" style="flex:2; background:#27ae60; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Save Changes</button>
-                <button id="cancelEdit" style="flex:1; background:#f1f1f1; color:#333; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">Cancel</button>
+        <div style="background:white; padding:25px; border-radius:12px; width:90%; max-width:400px; color:#333;">
+            <h3 style="margin-bottom:15px;">📝 Edit Note</h3>
+            <input type="text" id="editTitle" placeholder="Title" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px; color:black;">
+            <input type="text" id="editSubject" placeholder="Subject" style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ccc; border-radius:5px; color:black;">
+            <textarea id="editDesc" placeholder="Description" rows="4" style="width:100%; padding:10px; margin-bottom:15px; border:1px solid #ccc; border-radius:5px; color:black;"></textarea>
+            <div style="display:flex; gap:10px;">
+                <button id="saveEdit" style="flex:1; background:#10b981; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">Save</button>
+                <button id="cancelEdit" style="flex:1; background:#94a3b8; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">Cancel</button>
             </div>
         </div>
     `;
@@ -174,9 +160,9 @@ function createEditModal() {
 function openEditPopup(note) {
     if (!editModal) createEditModal();
     currentNoteId = note._id;
-    document.getElementById('editTitle').value = note.title || '';
-    document.getElementById('editSubject').value = note.subject || '';
-    document.getElementById('editDesc').value = note.description || '';
+    document.getElementById('editTitle').value = note.title;
+    document.getElementById('editSubject').value = note.subject;
+    document.getElementById('editDesc').value = note.description;
     editModal.style.display = 'flex';
 }
 
@@ -187,56 +173,42 @@ async function handleSaveEdit() {
         subject: document.getElementById('editSubject').value.trim(),
         description: document.getElementById('editDesc').value.trim()
     };
+
     const res = await fetch(`${baseURL}/${currentNoteId}`, {
         method: 'PUT',
-        headers: {  'x-auth-token': token, 'Content-Type': 'application/json' },
+        headers: { 'x-auth-token': token, 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData)
     });
+
     if (res.ok) {
-        showPopup("Notes Updated Successfully!", "success");
-        getNotes();
+        showPopup("Note updated!", "success");
         editModal.style.display = 'none';
+        getNotes();
     }
 }
 
 function openDeleteConfirmation(noteId) {
-    if (!deleteModal) {
-        deleteModal = document.createElement('div');
-        deleteModal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:9999;";
-        deleteModal.innerHTML = `
-            <div style="background:white; padding:30px; border-radius:15px; text-align:center; width:350px;">
-                <h3 style="color: black">🗑️ Confirm Deletion</h3>
-                <p style="color: #666">Are you sure you want to delete this note?</p>
-                <div style="margin-top:25px; display:flex; gap:12px;">
-                    <button id="confirmDel" style="flex:1; padding:12px; background:#dc3545; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Delete</button>
-                    <button id="cancelDel" style="flex:1; padding:12px; background:#eee; color:#333; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Cancel</button>
-                </div>
-            </div>
-        `;
-        document.body.appendChild(deleteModal);
-    }
-    deleteModal.style.display = 'flex';
-    document.getElementById('cancelDel').onclick = () => deleteModal.style.display = 'none';
-    document.getElementById('confirmDel').onclick = async () => {
+    if (confirm("Are you sure you want to delete this note?")) {
         const token = localStorage.getItem('token');
-        const res = await fetch(`${baseURL}/${noteId}`, { method: 'DELETE', headers: {  'x-auth-token': token } });
-        if (res.ok) {
-            showPopup("Notes Deleted Successfully!", "success");
-            getNotes();
-        }
-        deleteModal.style.display = 'none';
-    };
+        fetch(`${baseURL}/${noteId}`, { 
+            method: 'DELETE', 
+            headers: { 'x-auth-token': token } 
+        }).then(res => {
+            if(res.ok) {
+                showPopup("Deleted!", "success");
+                getNotes();
+            }
+        });
+    }
 }
+
+// --- 4. UPLOAD LOGIC ---
 
 submitBtn.onclick = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token');
+    if (!titleInput.value || !realFileInput.files[0]) return showPopup("Fill all fields!", "info");
 
-     const token = localStorage.getItem('token');
-    
-    if (!titleInput.value || !realFileInput.files[0]) {
-        showPopup("Please Enter all the fields!", "info");
-        return;
-    }
     const formData = new FormData();
     formData.append('title', titleInput.value);
     formData.append('subject', subjectInput.value);
@@ -248,48 +220,26 @@ submitBtn.onclick = async (e) => {
 
     const res = await fetch(baseURL, {
         method: 'POST',
-        headers: { 
-           'x-auth-token': token
-        },
+        headers: { 'x-auth-token': token },
         body: formData
     });
 
     if (res.ok) {
-        showPopup("Notes Added Successfully!", "success");
-        getNotes();
-        titleInput.value = ''; subjectInput.value = ''; descInput.value = ''; 
+        showPopup("Note Added!", "success");
+        titleInput.value = ''; subjectInput.value = ''; descInput.value = '';
         realFileInput.value = ''; browseBtnTemp.textContent = 'Browse';
+        getNotes();
     }
     submitBtn.disabled = false;
     submitBtn.textContent = "Submit";
 };
 
-// Initial Calls
+// Initial Load
 document.addEventListener('DOMContentLoaded', () => {
     injectStyles();
     applySavedTheme();
     getNotes();
 });
-// Bottom Upload button logic
-const bottomAddBtn = document.getElementById("bottom-add-btn");
-
-if (bottomAddBtn) {
-    bottomAddBtn.onclick = () => {
-        // Form wale section tak smooth scroll karke le jayega
-        document.querySelector(".main-login").scrollIntoView({ 
-            behavior: "smooth", 
-            block: "center" 
-        });
-        
-        // Title input par focus kar dega taaki user turant likhna shuru kar sake
-        titleInput.focus();
-    };
-}
 
 browseBtnTemp.onclick = () => realFileInput.click();
-
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
-
-
-
-
