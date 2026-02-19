@@ -199,7 +199,7 @@ function openDeleteConfirmation(noteId) {
         deleteModal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:9999;";
         deleteModal.innerHTML = `
             <div style="background:white; padding:30px; border-radius:15px; text-align:center; width:350px;">
-                <h3 style="color: black">🗑️ Confirm Deletion</h3>
+                <h3 style="color: black !important;">🗑️ Confirm Deletion</h3>
                 <p style="color:black !important; font-weight:500;">Are you sure you want to delete this note?</p>
                 <div style="margin-top:25px; display:flex; gap:12px;">
                     <button id="confirmDel" style="flex:1; padding:12px; background:#dc3545; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Delete</button>
@@ -277,6 +277,7 @@ if (bottomAddBtn) {
 
 browseBtnTemp.onclick = () => realFileInput.click();
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
+
 
 
 
