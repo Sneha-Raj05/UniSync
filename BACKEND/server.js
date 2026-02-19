@@ -10,10 +10,17 @@ import registrationRoutes from "./routes/registrationRoutes.js";
 import notesRoutes from "./routes/notesRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import eventRoutes from "./routes/eventRoutes.js";
+import { v2 as cloudinary } from 'cloudinary';
 
 if (process.env.NODE_ENV !== 'production') {
     dotenv.config();
 }
+
+cloudinary.config({
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME, 
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -78,6 +85,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export default app; // Sabse important line Vercel ke liye
+
 
 
 
