@@ -13,6 +13,8 @@ const storage = new CloudinaryStorage({
         folder: 'unisync_notes', 
         resource_type: 'auto', 
         allowed_formats: ['jpg', 'png', 'pdf', 'docx', 'txt'],
+        flags: 'attachment',
+        access_mode: 'public'
     },
 });
 
@@ -98,3 +100,4 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 export default router;
+
