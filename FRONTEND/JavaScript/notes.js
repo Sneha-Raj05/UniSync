@@ -149,7 +149,7 @@ function createEditModal() {
     editModal = document.createElement('div');
     editModal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:9999;";
     editModal.innerHTML = `
-        <div style="background:white; padding:40px; border-radius:12px; width:90%; max-width:500px; font-family:'Poppins';">
+        <div style="background:white; padding:40px; border-radius:12px; width:90%; max-width:440px; font-family:'Poppins';">
             <h3 style="margin-bottom:20px; color:black !important;">📝 Edit Note Details</h3>
             <input type="text" id="editTitle" placeholder="Title" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
             <input type="text" id="editSubject" placeholder="Subject" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
@@ -277,5 +277,6 @@ if (bottomAddBtn) {
 
 browseBtnTemp.onclick = () => realFileInput.click();
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
+
 
 
