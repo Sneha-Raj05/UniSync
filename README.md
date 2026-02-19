@@ -41,14 +41,14 @@
 
 | Layer | Tech Used |
 | :--- | :--- |
-| ** Frontend** | HTML, CSS (Glassmorphism), JavaScript (ES6+) |
-| ** Backend** | Node.js, Express.js |
-| ** Database** | MongoDB, Mongoose |
-| ** Middlewares** | **CORS**, Body-Parser (50MB Limit) |
-| ** Auth** | JWT (JSON Web Tokens), LocalStorage |
-| ** File Handling** | Multer |
-| ** Cloud Storage** | Cloudinary |
-| ** Deployment ** | Vercel |
+| **Frontend** | HTML, CSS (Glassmorphism), JavaScript (ES6+) |
+| **Backend** | Node.js, Express.js |
+| **Database** | MongoDB, Mongoose |
+| **Middlewares** | CORS, Body-Parser (50MB Limit) |
+| **Auth** | JWT (JSON Web Tokens), LocalStorage |
+| **File Handling** | Multer |
+| **Cloud Storage** | Cloudinary |
+| **Deployment** | Vercel |
 
 ---
 
@@ -68,7 +68,10 @@
 4. **Start the Server:**
    node app.js
 
-**Link of the Website:** https://uni-sync-iota.vercel.app/
+
+**Link of the Website:** **https://uni-sync-iota.vercel.app/**
+
+
 
 ## 📸 PROJECT SCREENSHOTS
 **LOGIN PAGE**
