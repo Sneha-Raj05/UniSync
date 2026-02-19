@@ -128,7 +128,10 @@ async function getNotes() {
     notesContainer.innerHTML = "<p style='color: white;'>Loading your notes...</p>";
 
     const res = await fetch(baseURL, { 
-        headers: { 'Authorization': `Bearer ${token}` } 
+       headers: { 
+        'x-auth-token': token
+      }
+
     });
 
     if (res.ok) {
@@ -183,7 +186,7 @@ async function handleSaveEdit() {
     };
     const res = await fetch(`${baseURL}/${currentNoteId}`, {
         method: 'PUT',
-        headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+        headers: {  'x-auth-token': token, 'Content-Type': 'application/json' },
         body: JSON.stringify(updatedData)
     });
     if (res.ok) {
@@ -213,7 +216,7 @@ function openDeleteConfirmation(noteId) {
     document.getElementById('cancelDel').onclick = () => deleteModal.style.display = 'none';
     document.getElementById('confirmDel').onclick = async () => {
         const token = localStorage.getItem('token');
-        const res = await fetch(`${baseURL}/${noteId}`, { method: 'DELETE', headers: { 'Authorization': `Bearer ${token}` } });
+        const res = await fetch(`${baseURL}/${noteId}`, { method: 'DELETE', headers: {  'x-auth-token': token } });
         if (res.ok) {
             showPopup("Notes Deleted Successfully!", "success");
             getNotes();
@@ -224,6 +227,9 @@ function openDeleteConfirmation(noteId) {
 
 submitBtn.onclick = async (e) => {
     e.preventDefault();
+
+     const token = localStorage.getItem('token');
+    
     if (!titleInput.value || !realFileInput.files[0]) {
         showPopup("Please Enter all the fields!", "info");
         return;
@@ -239,7 +245,9 @@ submitBtn.onclick = async (e) => {
 
     const res = await fetch(baseURL, {
         method: 'POST',
-        headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` },
+        headers: { 
+           'x-auth-token': token
+        },
         body: formData
     });
 
@@ -278,5 +286,6 @@ if (bottomAddBtn) {
 browseBtnTemp.onclick = () => realFileInput.click();
 
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
+
 
 
