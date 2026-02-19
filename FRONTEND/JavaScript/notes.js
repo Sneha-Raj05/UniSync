@@ -149,8 +149,8 @@ function createEditModal() {
     editModal = document.createElement('div');
     editModal.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:none; justify-content:center; align-items:center; z-index:9999;";
     editModal.innerHTML = `
-        <div style="background:white; padding:25px; border-radius:12px; width:90%; max-width:450px; font-family:'Poppins';">
-            <h3 style="margin-bottom:20px; color:#333;">📝 Edit Note Details</h3>
+        <div style="background:white; padding:35px; border-radius:12px; width:95%; max-width:550px; font-family:'Poppins';">
+            <h3 style="margin-bottom:20px; color:black !important;">📝 Edit Note Details</h3>
             <input type="text" id="editTitle" placeholder="Title" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
             <input type="text" id="editSubject" placeholder="Subject" style="width:100%; padding:12px; margin-bottom:15px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;">
             <textarea id="editDesc" placeholder="Description" rows="4" style="width:100%; padding:12px; margin-bottom:20px; border:1px solid #ddd; border-radius:8px; color:black !important; background:white !important;"></textarea>
@@ -200,7 +200,7 @@ function openDeleteConfirmation(noteId) {
         deleteModal.innerHTML = `
             <div style="background:white; padding:30px; border-radius:15px; text-align:center; width:350px;">
                 <h3 style="color: black">🗑️ Confirm Deletion</h3>
-                <p style="color: #666">Are you sure you want to delete this note?</p>
+                <p style="color: black; font-weight:500;">Are you sure you want to delete this note?</p>
                 <div style="margin-top:25px; display:flex; gap:12px;">
                     <button id="confirmDel" style="flex:1; padding:12px; background:#dc3545; color:white; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Delete</button>
                     <button id="cancelDel" style="flex:1; padding:12px; background:#eee; color:#333; border:none; border-radius:8px; cursor:pointer; font-weight:bold;">Cancel</button>
@@ -277,3 +277,4 @@ if (bottomAddBtn) {
 
 browseBtnTemp.onclick = () => realFileInput.click();
 realFileInput.onchange = () => { if(realFileInput.files[0]) browseBtnTemp.textContent = realFileInput.files[0].name; };
+
