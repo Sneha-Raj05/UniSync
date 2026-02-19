@@ -1,4 +1,4 @@
-# 🌐 UniSync – Complete Campus Utility Hub
+# 🎓 UniSync – Complete Campus Utility Hub
 
 **UniSync** is a full-stack web application designed to unify and simplify campus life. From academic resource sharing and event participation to secure financial transactions and a transparent feedback loop, UniSync synchronizes every aspect of the student experience into a single, high-performance interface.
 
@@ -46,8 +46,12 @@
 | ** Database** | MongoDB, Mongoose |
 | ** Middlewares** | **CORS**, Body-Parser (50MB Limit) |
 | ** Auth** | JWT (JSON Web Tokens), LocalStorage |
+| ** File Handling** | Multer |
+| ** Cloud Storage** | Cloudinary |
+| ** Deployment ** | Vercel |
 
 ---
+
 
 ## 🚀 How to Run Locally
 
@@ -63,6 +67,8 @@
 
 4. **Start the Server:**
    node app.js
+
+**Link of the Website:** https://uni-sync-iota.vercel.app/
 
 ## 📸 PROJECT SCREENSHOTS
 **LOGIN PAGE**
