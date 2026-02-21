@@ -156,16 +156,16 @@ document.addEventListener("DOMContentLoaded", () => {
         container.style.maxHeight = "400px";
         container.style.overflowY = "auto";
         try {
-            const res = await fetch('https://unisync-backend-final.vercel.app/api/notes', { headers: { 'Authorization': `Bearer ${token}` } });
+            const res = await fetch('https://unisync-backend-final.vercel.app/api/notes', { headers: { 'x-auth-token': token } });
             const notes = await res.json();
             document.getElementById("statNotes").innerText = notes.length;
             if (notes.length > 0) {
                 container.innerHTML = notes.map(note => {
-                    const fullFilePath = note.filePath ? `https://unisync-backend-final.vercel.app/${note.filePath.replace(/\\/g, '/')}` : null;
+                    const fullFilePath = note.filePath ? note.filePath : "#";
                     return `
                     <div class="note-item" style="margin-bottom: 15px;">
                         <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; cursor: pointer;" 
-                             onclick="${fullFilePath ? `window.open('${fullFilePath}', '_blank')` : "alert('No file')"}" class="note-inner-card">
+                             onclick="window.open('${fileUrl}', '_blank', 'noopener,noreferrer')">
                             <i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.4rem;"></i>
                             <div style="flex: 1; overflow: hidden;">
                                 <h5 style="margin: 0; font-size: 1rem; color: #1e293b; font-weight: 700;">${note.title}</h5>
@@ -182,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const container = document.getElementById("recentActivityContainer");
         if (!container) return;
         try {
-            const res = await fetch('https://unisync-backend-final.vercel.app/api/registrations/my-events', { headers: { 'Authorization': `Bearer ${token}` } });
+            const res = await fetch('https://unisync-backend-final.vercel.app/api/registrations/my-events', { headers: { 'x-auth-token': token } });
             const registrations = await res.json();
             document.getElementById("statEvents").innerText = registrations.length;
             if (registrations.length > 0) {
@@ -232,7 +232,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
                 const res = await fetch(`${apiURL}/update-profile`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    headers: { 'Content-Type': 'application/json', 'x-auth-token': token },
                     body: JSON.stringify(updatedData)
                 });
                 if (res.ok) {
@@ -261,7 +261,7 @@ document.addEventListener("DOMContentLoaded", () => {
             reader.onload = async () => {
                 const res = await fetch(`${apiURL}/update-profile`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    headers: { 'Content-Type': 'application/json', 'x-auth-token': token },
                     body: JSON.stringify({ profilePic: reader.result })
                 });
                 if (res.ok) {
@@ -280,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("dispEmail").innerText = "";
         document.getElementById("dispBranch").innerText = "";
         try {
-            const res = await fetch(`${apiURL}/me`, { headers: { 'Authorization': `Bearer ${token}` } });
+            const res = await fetch(`${apiURL}/me`, { headers: { 'x-auth-token': token } });
             const user = await res.json();
             document.getElementById("dispName").innerText = user.name || user.username;
             document.getElementById("dispEmail").innerHTML = `<i class="fa-solid fa-envelope"></i> ${user.email}`;
@@ -341,5 +341,6 @@ document.addEventListener("DOMContentLoaded", () => {
     initLogout();
 
 });
+
 
 
