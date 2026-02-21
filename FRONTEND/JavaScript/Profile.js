@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const fileUrl = note.filePath ? note.filePath : "#";
     return `
     <div class="note-item" style="margin-bottom: 12px;">
-        <div style="display: flex; align-items: center; gap: 15px; padding: 12px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 20px; cursor: pointer; min-height: 70px;" 
+        <div style="display: flex; align-items: center; gap: 12px; padding: 9px 16px; background: white; border: 1px solid #e2e8f0; border-radius: 20px; cursor: pointer; min-height: 60px;" 
              onclick="window.open('${fileUrl}', '_blank', 'noopener,noreferrer')">
             
             <div style="flex-shrink: 0;">
@@ -350,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initLogout();
 
 });
+
 
 
 
