@@ -161,7 +161,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.getElementById("statNotes").innerText = notes.length;
             if (notes.length > 0) {
                 container.innerHTML = notes.map(note => {
-                    const fullFilePath = note.filePath ? note.filePath : "#";
+                    const fileURL = note.filePath ? note.filePath : "#";
                     return `
                     <div class="note-item" style="margin-bottom: 15px;">
                         <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; cursor: pointer;" 
