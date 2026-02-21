@@ -160,20 +160,29 @@ document.addEventListener("DOMContentLoaded", () => {
             const notes = await res.json();
             document.getElementById("statNotes").innerText = notes.length;
             if (notes.length > 0) {
-                container.innerHTML = notes.map(note => {
-                    const fileURL = note.filePath ? note.filePath : "#";
-                    return `
-                    <div class="note-item" style="margin-bottom: 15px;">
-                        <div style="display: flex; align-items: center; gap: 12px; padding: 15px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; cursor: pointer;" 
-                             onclick="window.open('${fileURL}', '_blank', 'noopener,noreferrer')"
-                            <i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.4rem;"></i>
-                            <div style="flex: 1; overflow: hidden;">
-                                <h5 style="margin: 0; font-size: 1rem; color: #1e293b; font-weight: 700;">${note.title}</h5>
-                                <small style="color: #64748b;">${new Date(note.createdAt).toLocaleDateString()}</small>
-                            </div>
-                        </div>
-                    </div>`;
-                }).join('');
+               container.innerHTML = notes.map(note => {
+    const fileUrl = note.filePath ? note.filePath : "#";
+    return `
+    <div class="note-item" style="margin-bottom: 12px;">
+        <div style="display: flex; align-items: center; gap: 15px; padding: 12px 20px; background: white; border: 1px solid #e2e8f0; border-radius: 20px; cursor: pointer; min-height: 70px;" 
+             onclick="window.open('${fileUrl}', '_blank', 'noopener,noreferrer')">
+            
+            <div style="flex-shrink: 0;">
+                <i class="fa-solid fa-file-pdf" style="color: #ef4444; font-size: 1.8rem;"></i>
+            </div>
+
+            <div style="display: flex; flex-direction: column; justify-content: center; overflow: hidden;">
+                <h5 style="margin: 0; font-size: 1.05rem; color: #1e293b; font-weight: 700; line-height: 1.2;">
+                    ${note.title}
+                </h5>
+                <small style="color: #64748b; font-size: 0.85rem; margin-top: 2px;">
+                    ${new Date(note.createdAt).toLocaleDateString('en-GB')}
+                </small>
+            </div>
+
+        </div>
+    </div>`;
+}).join('');
             }
         } catch (err) { console.error(err); }
     };
@@ -341,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initLogout();
 
 });
+
 
 
 
