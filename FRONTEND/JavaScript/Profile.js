@@ -284,7 +284,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
  
     const loadProfile = async () => {
-        if (!token) return (window.location.href = "login.html");
+        if (!token) return (window.location.href = "Login.html");
         document.getElementById("dispName").innerText = "Loading..."; 
         document.getElementById("dispEmail").innerText = "";
         document.getElementById("dispBranch").innerText = "";
@@ -328,7 +328,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                     </div>`;
                 document.body.appendChild(overlay);
-                document.getElementById("confirmExit").onclick = () => { localStorage.clear(); window.location.href = "login.html"; };
+                document.getElementById("confirmExit").onclick = () => { localStorage.clear(); window.location.href = "Login.html"; };
                 document.getElementById("cancelExit").onclick = () => overlay.remove();
             };
         }
@@ -350,6 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initLogout();
 
 });
+
 
 
 
